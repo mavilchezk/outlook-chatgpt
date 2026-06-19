@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ChatGPT</title>
+</head>
+<body>
+
+<h2>Analizar correo</h2>
+
+<button onclick="analizar()">
+Abrir ChatGPT
+</button>
+
+<script>
+
+function analizar(){
+
+Office.context.mailbox.item.body.getAsync(
+    Office.CoercionType.Text,
+
+    function(result){
+
+        var texto = result.value;
+
+        var prompt =
+        "Resume este correo en:\n" +
+        "- Resumen ejecutivo\n" +
+        "- Riesgos\n" +
+        "- Acciones\n\n" +
+        texto;
+
+        var url =
+        "https://chatgpt.com/?q=" +
+        encodeURIComponent(prompt);
+
+        window.open(url,'_blank');
+
+    }
+
+);
+
+}
+
+</script>
+
+<script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+
+</body>
+</html>
+
